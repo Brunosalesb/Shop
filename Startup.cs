@@ -66,6 +66,7 @@ namespace Shop
             // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
             services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
 
+            //AddDbContext acima já realiza agora a funcao do AddScoped
             //AddScoped garante que só tem 1 dataContext por requisicao, e quando a requisicao acaba, trata de destruir o dataContext, assim destruindo a conexao com o banco de dados
             // services.AddScoped<DataContext, DataContext>();
 
@@ -88,13 +89,13 @@ namespace Shop
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //usado para saver se esta em tempo de desenvolvimento
-            // if (env.IsDevelopment())
-            // {
-            //da mais informacoes do erro
-            app.UseDeveloperExceptionPage();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop V1"));
-            // }
+            if (env.IsDevelopment())
+            {
+                //da mais informacoes do erro
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop V1"));
+            }
 
             //forçar api responder sobre https
             app.UseHttpsRedirection();
