@@ -63,11 +63,11 @@ namespace Shop
             });
 
             //adicionando dataContext
-            services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
-            // services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
+            // services.AddDbContext<DataContext>(opt => opt.UseInMemoryDatabase("Database"));
+            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("connectionString")));
 
             //AddScoped garante que só tem 1 dataContext por requisicao, e quando a requisicao acaba, trata de destruir o dataContext, assim destruindo a conexao com o banco de dados
-            services.AddScoped<DataContext, DataContext>();
+            // services.AddScoped<DataContext, DataContext>();
 
             // addTransient toda vez que for pedido um dataContext, ele irá criar uma novo dataContext, abrindo uma nova conexao com o banco de dados
             // services.AddTransient<DataContext, DataContext>();
