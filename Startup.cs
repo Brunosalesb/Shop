@@ -88,13 +88,13 @@ namespace Shop
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //usado para saver se esta em tempo de desenvolvimento
-            if (env.IsDevelopment())
-            {
-                //da mais informacoes do erro
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop V1"));
-            }
+            // if (env.IsDevelopment())
+            // {
+            //da mais informacoes do erro
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Shop V1"));
+            // }
 
             //forçar api responder sobre https
             app.UseHttpsRedirection();
